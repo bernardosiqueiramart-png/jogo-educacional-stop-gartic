@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Ortográfico - ç, sc, ss</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Stop Ortográfico</h1>
+            <p>Aprenda sobre <strong>ç, sc, ss</strong> de forma divertida!</p>
+            <p class="turma">9°B - E.E Vereador Antônio Valdemar Galo - Prof° Meggie</p>
+        </header>
+
+        <div class="menu" id="menu">
+            <button onclick="iniciarJogo()" class="btn btn-primary">🎯 Começar Jogo</button>
+            <button onclick="mostrarInstruções()" class="btn btn-secondary">📖 Como Jogar</button>
+            <button onclick="verEstrutura()" class="btn btn-secondary">📚 Estudar</button>
+        </div>
+
+        <div id="instrucoes" class="modal hidden">
+            <div class="modal-content">
+                <span onclick="fecharModal()" class="close">&times;</span>
+                <h2>Como Jogar</h2>
+                <ol>
+                    <li>Uma letra será sorteada</li>
+                    <li>Você tem <strong>60 segundos</strong> para escrever palavras que COMEÇAM com essa letra</li>
+                    <li>Escolha a categoria de palavras (Normal ou com ç/sc/ss)</li>
+                    <li>Quanto mais palavras corretas, mais pontos!</li>
+                    <li>Bônus: Palavras com ç, sc ou ss valem DOBRO!</li>
+                </ol>
+            </div>
+        </div>
+
+        <div id="estudo" class="modal hidden">
+            <div class="modal-content">
+                <span onclick="fecharModal()" class="close">&times;</span>
+                <h2>📚 Estrutura Ortográfica</h2>
+                
+                <div class="card">
+                    <h3>Ç (Cedilha)</h3>
+                    <p><strong>Quando usar:</strong> Antes de A, O, U</p>
+                    <ul>
+                        <li>🔤 <strong>Paç</strong>o (do palácio)</li>
+                        <li>🔤 <strong>Açú</strong>car</li>
+                        <li>🔤 <strong>Cabeç</strong>a</li>
+                        <li>🔤 Maçã, Louça, Carapuça</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>SC (S + C)</h3>
+                    <p><strong>Quando usar:</strong> Antes de E, I</p>
+                    <ul>
+                        <li>🔤 <strong>Asce</strong>ndência</li>
+                        <li>🔤 <strong>Disci</strong>plina</li>
+                        <li>🔤 <strong>Fase</strong> → <strong>Fasci</strong>nação</li>
+                        <li>🔤 Nascimento, Consciente, Adolescência</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>SS (S + S)</h3>
+                    <p><strong>Quando usar:</strong> Entre duas vogais (som de Z)</p>
+                    <ul>
+                        <li>🔤 <strong>Pas</strong>s<strong>aro</strong></li>
+                        <li>🔤 <strong>Clas</strong>s<strong>e</strong></li>
+                        <li>🔤 <strong>Mas</strong>s<strong>a</strong></li>
+                        <li>🔤 Necessário, Passagem, Bassê</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="jogo" class="hidden">
+            <div class="jogo-header">
+                <div class="info">
+                    <h2>Letra: <span id="letra" class="letra-grande">A</span></h2>
+                </div>
+                <div class="timer">
+                    <p>⏱️ Tempo: <span id="tempo">60</span>s</p>
+                </div>
+                <div class="pontos">
+                    <p>⭐ Pontos: <span id="pontos">0</span></p>
+                </div>
+            </div>
+
+            <div class="categorias">
+                <button onclick="selecionarCategoria('normal')" id="btn-normal" class="categoria-btn ativo">
+                    Palavra Normal
+                </button>
+                <button onclick="selecionarCategoria('especial')" id="btn-especial" class="categoria-btn">
+                    Com ç/sc/ss 🎯
+                </button>
+            </div>
+
+            <div class="input-area">
+                <input 
+                    type="text" 
+                    id="inputPalavra" 
+                    placeholder="Digite a palavra e pressione Enter..."
+                    onkeypress="verificarEnter(event)"
+                >
+                <button onclick="adicionarPalavra()" class="btn btn-primary">✅ Confirmar</button>
+            </div>
+
+            <div class="palavras-jogadas">
+                <h3>Suas palavras:</h3>
+                <ul id="listaPalavras"></ul>
+            </div>
+
+            <button onclick="pararJogo()" class="btn btn-danger">🛑 Parar Jogo</button>
+        </div>
+
+        <div id="resultado" class="modal hidden">
+            <div class="modal-content resultado-content">
+                <h2>🎊 Jogo Finalizado!</h2>
+                <div class="resultado-stats">
+                    <p class="stat"><strong>Pontos:</strong> <span id="pontosFinal">0</span></p>
+                    <p class="stat"><strong>Palavras Acertadas:</strong> <span id="palavrasAcertadas">0</span></p>
+                    <p class="stat"><strong>Pontos com Bônus (ç/sc/ss):</strong> <span id="bonusTotal">0</span></p>
+                </div>
+                <button onclick="voltarMenu()" class="btn btn-primary">🏠 Voltar ao Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
